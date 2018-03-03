@@ -3,9 +3,9 @@
 A description of this package.
 
 ## Todos
-* Implement tests for ClocWrapper
 * Finish README
 * Add License
+* Substract non-Swift and Obj-c files from total (using a cloc subcommand?)
 * Find way to avoid absolute paths
 * Implement Slack part
 * Implement test for Slack part

@@ -11,11 +11,13 @@ public struct ClocResult: Decodable {
     public let sumTotal: LanguageResult
     public let swift: LanguageResult?
     public let objc: LanguageResult?
+    public let objcHeader: LanguageResult?
     
     enum CodingKeys: String, CodingKey {
         case sumTotal = "SUM"
         case swift = "Swift"
-        case objc = "Objective C" //TODO: To add header files
+        case objc = "Objective C"
+        case objcHeader = "C/C++ Header"
     }
 }
 

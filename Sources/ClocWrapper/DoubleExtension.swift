@@ -10,6 +10,6 @@ import Foundation
 extension Double {
     var roundedToTwoPlaces: Double {
         let divisor = pow(10.0, 2.0)
-        return (self * divisor).rounded()
+        return (self * divisor).rounded() / divisor
     }
 }

@@ -9,8 +9,8 @@ import Foundation
 
 public struct ClocResult: Codable {
     public let sumTotal: LanguageResult
-    public let swift: LanguageResult
-    public let objc: LanguageResult
+    public let swift: LanguageResult?
+    public let objc: LanguageResult?
     
     enum CodingKeys: String, CodingKey {
         case sumTotal = "SUM"
@@ -24,13 +24,10 @@ public struct LanguageResult: Codable {
     enum CodingKeys: String, CodingKey { case linesOfCode = "code" }
 }
 
-//TODO: reduce code below to one variable
 extension ClocResult {
-    public var percentageOfSwift: Double {
-        return Double((swift.linesOfCode / sumTotal.linesOfCode) * 100).roundedToTwoPlaces
-    }
-    
-    public var percentageOfObjC: Double {
-        return Double((objc.linesOfCode / sumTotal.linesOfCode) * 100).roundedToTwoPlaces
+    public func percentage(of language: LanguageResult?) -> Double {
+        guard let language = language else { return 0.00 }
+        
+        return Double((language.linesOfCode / sumTotal.linesOfCode) * 100).roundedToTwoPlaces
     }
 }

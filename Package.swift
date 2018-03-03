@@ -19,7 +19,7 @@ let package = Package(
     targets: [
         .target(
             name: "LattnerBot",
-            dependencies: ["Commander"]),
+            dependencies: ["Commander", "ClocWrapper", "Output"]),
         .target(
             name: "ClocWrapper",
             dependencies: ["ShellOut"]),

@@ -7,7 +7,7 @@ public enum ClocError: Error {
 }
 
 public func runCloc(for path: String, with operation: (Data) throws -> String) throws -> String {
-    let rawOutputString = try shellOut(to: "cloc --json \(path)", at: "~/")
+    let rawOutputString = try shellOut(to: "cloc --include-lang='Swift','Objective C','C/C++ Header' --json \(path)", at: "~/")
     
     guard let data = rawOutputString.data(using: .utf8) else {
         throw ClocError.couldNotConvertStringToData

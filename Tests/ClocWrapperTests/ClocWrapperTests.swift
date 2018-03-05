@@ -21,9 +21,9 @@ class ClocWrapperTests: XCTestCase {
         super.setUp()
         clocOutput = clocJSON
         clocData = clocOutput.data(using: .utf8)
-        sumTotal = 4501
+        sumTotal = 3400 // Ignoring languages other than Obj-c and Swift
         linesOfSwift = 3330
-        linesOfObjc = 53
+        linesOfObjc = 70 // Header + regular obj-c
     }
     
     override func tearDown() {
@@ -40,16 +40,16 @@ class ClocWrapperTests: XCTestCase {
             XCTFail("Deserialization failure"); return
         }
         
-        XCTAssertEqual(sumTotal, result.sumTotal.linesOfCode)
-        XCTAssertEqual(linesOfSwift, result.swift?.linesOfCode)
-        XCTAssertEqual(linesOfObjc, result.objc?.linesOfCode)
+        XCTAssertEqual(sumTotal, result.sumTotal)
+        XCTAssertEqual(linesOfSwift, result.linesOfSwift)
+        XCTAssertEqual(linesOfObjc, result.linesOfObjC)
             
     }
     
     func test_roundedToTwoPlaces_returnsCorrectFigure() {
-        XCTAssertEqual(4501.00, Double(sumTotal).roundedToTwoPlaces)
+        XCTAssertEqual(3400.00, Double(sumTotal).roundedToTwoPlaces)
         XCTAssertEqual(3330.00, Double(linesOfSwift).roundedToTwoPlaces)
-        XCTAssertEqual(53.00, Double(linesOfObjc).roundedToTwoPlaces)
+        XCTAssertEqual(70.00, Double(linesOfObjc).roundedToTwoPlaces)
     }
     
     func test_percentageOf_returnsCorrectFigure() {
@@ -57,8 +57,8 @@ class ClocWrapperTests: XCTestCase {
             XCTFail("Deserialization failure"); return
         }
         
-        XCTAssertEqual(result.percentage(of: result.objc), 1.18)
-        XCTAssertEqual(result.percentage(of: result.swift), 73.98)
+        XCTAssertEqual(result.percentage(of: result.linesOfObjC), 2.06)
+        XCTAssertEqual(result.percentage(of: result.linesOfSwift), 97.94)
         XCTAssertEqual(result.percentage(of: result.sumTotal), 100.00)
     }
 }

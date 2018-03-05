@@ -22,8 +22,7 @@ public func getResults(for data: Data) throws -> String {
     }
     //TODO: make Swift orange
     return """
-    Percentage of Swift: \(clocResult.percentage(of: clocResult.swift))%
-    Percentage of ObjC: \(clocResult.percentage(of: clocResult.objc))%
-    Percentage of ObjC Header: \(clocResult.percentage(of: clocResult.objcHeader))%
+    Percentage of Swift: \(clocResult.percentage(of: clocResult.linesOfSwift))%
+    Percentage of ObjC: \(clocResult.percentage(of: clocResult.linesOfObjC))%
     """
 }

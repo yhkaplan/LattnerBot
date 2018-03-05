@@ -8,13 +8,11 @@
 import Foundation
 
 public struct ClocResult: Decodable {
-    public let sumTotal: LanguageResult
-    public let swift: LanguageResult?
-    public let objc: LanguageResult?
-    public let objcHeader: LanguageResult?
+    private let swift: LanguageResult
+    private let objc: LanguageResult
+    private let objcHeader: LanguageResult
     
     enum CodingKeys: String, CodingKey {
-        case sumTotal = "SUM"
         case swift = "Swift"
         case objc = "Objective C"
         case objcHeader = "C/C++ Header"
@@ -22,17 +20,23 @@ public struct ClocResult: Decodable {
 }
 
 public struct LanguageResult: Decodable {
-    public let linesOfCode: Int
-    enum CodingKeys: String, CodingKey { case linesOfCode = "code" }
+    public var code = 0
 }
 
 extension ClocResult {
-    public func percentage(of language: LanguageResult?) -> Double {
-        guard let language = language else {
-            return 0.00
-            
-        }
-        
-        return (Double(language.linesOfCode) / Double(sumTotal.linesOfCode) * 100.00).roundedToTwoPlaces
+    public var linesOfObjC: Int {
+        return objc.code + objcHeader.code
+    }
+    
+    public var linesOfSwift: Int {
+        return swift.code
+    }
+    
+    public var sumTotal: Int {
+        return linesOfObjC + linesOfSwift
+    }
+    
+    public func percentage(of linesOfCode: Int) -> Double {
+        return (Double(linesOfCode) / Double(sumTotal) * 100.00).roundedToTwoPlaces
     }
 }

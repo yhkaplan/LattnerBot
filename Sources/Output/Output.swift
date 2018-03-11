@@ -1,8 +1,8 @@
 import SlackKit
-import Foundation
 
 public class Bot {
     private let bot: SlackKit!
+    public var timezone = "GMT"
     
     private let ErrorHandler: (SlackError) -> Void = { error in
         print("Error: \(error)")
@@ -34,9 +34,11 @@ public class Bot {
             return
         }
         
-        webAPI.sendMessage(channel: channel, text: message, success: { ts, ch in
+        // The reason for going with unowned here is that I would prefer the app to crash immediately
+        // than hang on and on in the case that self is nil
+        webAPI.sendMessage(channel: channel, text: message, success: { [unowned self] ts, ch in
             
-            let formattedTimestamp = ts?.formattedTimestamp(withTimezone: "JPN") ?? "unknown time"
+            let formattedTimestamp = ts?.formattedTimestamp(withTimezone: self.timezone) ?? "unknown time"
             print("Posted in \(channel) at \(formattedTimestamp)")
             completionHandler?()
             
@@ -64,18 +66,3 @@ public class Bot {
         }, failure: ErrorHandler)
     }
 }
-
-extension String {
-    public func formattedTimestamp(withTimezone timezone: String) -> String? {
-        guard let ts = Double(self) else { return nil }
-        
-        let date = Date(timeIntervalSince1970: ts)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .long
-        dateFormatter.timeStyle = .full
-        dateFormatter.timeZone = TimeZone(abbreviation: timezone)
-        
-        return dateFormatter.string(from: date)
-    }
-}
-

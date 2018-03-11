@@ -6,15 +6,16 @@ import Foundation
 let main = command { (path: String) in
 
     // Get data
-    print("Please wait...")
+    print("Analyzing code, please wait...")
     guard let summary = try? runCloc(for: path, with: getResults) else {
         print("Error analyzing code"); return
     }
     
-    print("Posting to Slack...")
     // Post results
+    print("Posting to Slack...")
     let dispatchGroup = DispatchGroup()
     let bot = Bot(token: BOTUSERAPITOKEN)
+    bot.timezone = "JST"
     dispatchGroup.enter()
     bot.post(message: summary, to: "#general") {
         dispatchGroup.leave()

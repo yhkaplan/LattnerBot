@@ -12,4 +12,4 @@ This is a SlackBot made in Swift to announce what percentage of your codebase is
 * Make expressive README
 * Try out, improve areas lacking
 * Promote this
-* Replace cloc
+* Replace cloc with github API so bot doesn't need to be on local machine

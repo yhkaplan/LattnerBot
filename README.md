@@ -2,6 +2,10 @@
 
 This is a SlackBot made in Swift to announce what percentage of your codebase is in Obj-C and what percentage is in Swift. The name is based off of the original founder of Swift: Chris Lattner.
 
+## Features
+- [x] Percentage of Swift/Obj-c (currently using Cloc, planning on using GitHub API)
+- [ ] Average review time for PRs?
+
 ## Screenshots
 
 ## Usage

@@ -27,8 +27,10 @@ Tested on macOS High Sierra only, not Linux.
 
 ## Todos
 * Finish README
+* Add input options for timezone, slack channel, mentions, and APIKey
 * Add proper release tag
 * Implement test for Slack part
+* Release binary on Homebrew (after removing APIKey)
 * Add lots of func emoji and colors and some kind of visualization
 * Make expressive README
 * Try out, improve areas lacking

@@ -2,20 +2,30 @@
 
 This is a SlackBot made in Swift to announce what percentage of your codebase is in Obj-C and what percentage is in Swift. The name is based off of the original founder of Swift: Chris Lattner.
 
-## Features
-- [x] Percentage of Swift/Obj-c (currently using Cloc, planning on using GitHub API)
-- [ ] Average review time for PRs?
-
 ## Screenshots
 
 ## Usage
 You will need your own API key. Also, you will need to specify your preferred timezone.
 
+1. First declare your Slack API key in a file named ``ApiKeys.swift`` as: ``public let BOTUSERAPITOKEN = "xoxb-<et cetera>"``
+2. Set your timezone in ``main.swift`` under ``bot.timezone = "<timezone-abbreviation>"``
+3. Run ``$ swift build`` for test builds, then run ``$ .build/debug/LattnerBot <relative path to source directory>``
+
+For the release builds, run the commands below:
+```bash
+$ swift build -c release -Xswiftc -static-stdlib
+$ cd .build/release
+$ cp -f LattnerBot /usr/local/bin/lattnerbot
+```
+For more information about building and releasing, please refer to this post from John Sundell, 
+the master of command-line Swift: https://www.swiftbysundell.com/posts/building-a-command-line-tool-using-the-swift-package-manager
+
 ## Compatibility
+
+Tested on macOS High Sierra only, not Linux.
 
 ## Todos
 * Finish README
-* Find way to avoid absolute paths
 * Implement test for Slack part
 * Add lots of func emoji and colors and some kind of visualization
 * Make expressive README

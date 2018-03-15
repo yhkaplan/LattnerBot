@@ -21,7 +21,7 @@ class ClocWrapperTests: XCTestCase {
         super.setUp()
         clocOutput = clocJSON
         clocData = clocOutput.data(using: .utf8)
-        sumTotal = 3400 // Ignoring languages other than Obj-c and Swift
+        sumTotal = 3400 // Ignoring languages other than Obj-C and Swift
         linesOfSwift = 3330
         linesOfObjc = 70 // Header + regular obj-c
     }

@@ -8,9 +8,7 @@ This is a SlackBot made in Swift to announce what percentage of your codebase is
 You will need your own API key. Also, you will need to specify your preferred timezone.
 
 1. This project depends on cloc being installed: ``$ brew install cloc``
-2. First declare your Slack API key in a file named ``ApiKeys.swift`` as: ``public let BOTUSERAPITOKEN = "xoxb-<et cetera>"``
-3. Set your timezone in ``main.swift`` under ``bot.timezone = "<timezone-abbreviation>"``
-4. Run ``$ swift build`` for test builds, then run ``$ .build/debug/LattnerBot <relative path to source directory>``
+2. Run ``$ swift build`` for test builds, then run ``$ .build/debug/LattnerBot <relative path to source directory>``
 
 For the release builds, run the commands below:
 ```bash

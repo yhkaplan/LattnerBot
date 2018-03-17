@@ -8,9 +8,9 @@
 import Foundation
 
 public struct ClocResult: Decodable {
-    private let swift: LanguageResult
-    private let objc: LanguageResult
-    private let objcHeader: LanguageResult
+    private let swift: LanguageResult?
+    private let objc: LanguageResult?
+    private let objcHeader: LanguageResult?
     
     enum CodingKeys: String, CodingKey {
         case swift = "Swift"
@@ -25,11 +25,11 @@ public struct LanguageResult: Decodable {
 
 extension ClocResult {
     public var linesOfObjC: Int {
-        return objc.code + objcHeader.code
+        return (objc?.code ?? 0) + (objcHeader?.code ?? 0)
     }
     
     public var linesOfSwift: Int {
-        return swift.code
+        return swift?.code ?? 0
     }
     
     public var sumTotal: Int {

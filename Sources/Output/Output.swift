@@ -2,51 +2,46 @@ import SlackKit
 
 public class Bot {
     private let bot: SlackKit!
-    public var timezone = "GMT"
+    private let timezone: String!
     
     private let ErrorHandler: (SlackError) -> Void = { error in
         print("Error: \(error)")
     }
     
-    // OAUTH Initializer
+    // MARK: - Token-base Initializer
     
-    // This probably requires redirect server user
-    // Most easily done w/ ngrok
-    // https://api.slack.com/tutorials/tunneling-with-ngrok
-    
-    public init(clientID: String, clientSecret: String) {
-        bot = SlackKit()
-        let oAuthConfig = OAuthConfig(clientID: clientID, clientSecret: clientSecret)
-        bot.addServer(oauth: oAuthConfig)
-    }
-
-    // Token-base Initializer
-    
-    public init(token: String) {
+    public init(token: String, timezone: String) {
+        self.timezone = timezone
         bot = SlackKit()
         bot.addRTMBotWithAPIToken(token)
         bot.addWebAPIAccessWithToken(token)
     }
     
-    public func post(message: String, to channel: String, completionHandler: (() -> Void)? = nil) {
+    // MARK: - Public funcs
+    
+    public func post(message: String, to channel: String, with mentions: String, completion: (() -> Void)? = nil) {
         guard let webAPI = bot.webAPI else {
             print("Error with webAPI")
             return
         }
         
+        let text = (mentions.isEmpty ? "" : "\(mentions)\n") + message
+        
         // The reason for going with unowned here is that I would prefer the app to crash immediately
         // than hang on and on in the case that self is nil
-        webAPI.sendMessage(channel: channel, text: message, success: { [unowned self] ts, ch in
+        webAPI.sendMessage(channel: channel, text: text, success: { [unowned self] ts, ch in
             
             let formattedTimestamp = ts?.formattedTimestamp(withTimezone: self.timezone) ?? "unknown time"
             print("Posted in \(channel) at \(formattedTimestamp)")
-            completionHandler?()
+            completion?()
             
         }, failure: { error in
             print("Error posting \(error)")
-            completionHandler?()
+            completion?()
         })
     }
+    
+    // MARK: - Private funcs
     
     // For debugging purposes
     private func authenticationTest() {

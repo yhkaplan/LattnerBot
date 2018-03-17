@@ -27,7 +27,7 @@ Tested on macOS High Sierra only, not Linux.
 
 ## Todos
 * Finish README
-* Add input options for timezone, slack channel, mentions, and APIKey
+* Add 3 tests to ClockWrapper: 1 for when no objc, 1 for when no objc header, and one for when no swift
 * Add proper release tag
 * Implement test for Slack part
 * Release binary on Homebrew (after removing APIKey)

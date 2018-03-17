@@ -6,8 +6,12 @@ public enum ClocError: Error {
     case couldNotConvertJSONToObject
 }
 
-public func runCloc(for path: String, with operation: (Data) throws -> String) throws -> String {
+public typealias Operation = (Data) throws -> String
+
+public func runCloc(for path: String, debug: Bool, operation: Operation) throws -> String {
     let rawOutputString = try shellOut(to: "cloc --include-lang='Swift','Objective C','C/C++ Header' --json \(path)")
+    
+    if debug { print("Raw output: \(rawOutputString)") }
     
     guard let data = rawOutputString.data(using: .utf8) else {
         throw ClocError.couldNotConvertStringToData

@@ -7,11 +7,11 @@ let main = command(
     Argument<String>("apikey", description: "The API key for your Slack account"),
     Option("path", default: "", description: "The path to the files you want to scan"),
     Option("channel", default: "#general", description: "The channel you want to post to"),
-    Option("mentions", default: "", description: "Which @mentions you want to prepend"), //TODO: not working as pure string, may need to add feature to SlackKit
+    Option("mentionID", default: "", description: "Which @mentions you want to prepend"), //TODO: not working as pure string, may need to add feature to SlackKit
     Option("timezone", default: "GMT", description: "The timezone you wish error/success status to be displayed in"),
     Flag("debug-output", default: false, description: "Whether or not to show debug output from cloc")
 
-) { apikey, path, channel, mentions, timezone, debug in
+) { apikey, path, channel, mentionID, timezone, debug in
 
     // Get data
     print("Analyzing code, please wait...")
@@ -28,7 +28,7 @@ let main = command(
     let bot = Bot(token: apikey, timezone: timezone)
     
     dispatchGroup.enter()
-    bot.post(message: message, to: channel, with: mentions) {
+    bot.post(message: message, to: channel, with: mentionID) {
         dispatchGroup.leave()
     }
     

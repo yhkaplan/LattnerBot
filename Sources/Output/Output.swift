@@ -3,9 +3,11 @@ import SlackKit
 public class Bot {
     private let bot: SlackKit!
     private let timezone: String!
+    public typealias CompletionHandler = () -> Void
     
-    private let ErrorHandler: (SlackError) -> Void = { error in
-        print("Error: \(error)")
+    private var webAPI: WebAPI {
+        if let api = bot.webAPI { return api }
+        fatalError("Initialization error")
     }
     
     // MARK: - Token-base Initializer
@@ -19,13 +21,9 @@ public class Bot {
     
     // MARK: - Public funcs
     
-    public func post(message: String, to channel: String, with mentions: String, completion: (() -> Void)? = nil) {
-        guard let webAPI = bot.webAPI else {
-            print("Error with webAPI")
-            return
-        }
+    public func post(message: String, to channel: String, with mentionID: String, completion: @escaping CompletionHandler) {
         
-        let text = (mentions.isEmpty ? "" : "\(mentions)\n") + message
+        let text = (mentionID.isEmpty ? "" : "<@\(mentionID)>\n") + message
         
         // The reason for going with unowned here is that I would prefer the app to crash immediately
         // than hang on and on in the case that self is nil
@@ -33,31 +31,46 @@ public class Bot {
             
             let formattedTimestamp = ts?.formattedTimestamp(withTimezone: self.timezone) ?? "unknown time"
             print("Posted in \(channel) at \(formattedTimestamp)")
-            completion?()
+            completion()
+            
+            }, failure: { error in
+                print("Error: \(error)")
+                completion()
+            })
+    }
+    
+    // For debugging purposes: to get group IDs
+    public func getGroups(completion: @escaping CompletionHandler) {
+        webAPI.groupsList(success: { response in
+            
+            guard let response = response else {
+                print("No groups")
+                completion(); return
+            }
+            
+            response.forEach { print($0.description) }
+            completion()
             
         }, failure: { error in
             print("Error posting \(error)")
-            completion?()
+            completion()
         })
     }
-    
-    // MARK: - Private funcs
-    
+
     // For debugging purposes
-    private func authenticationTest() {
-        guard let webAPI = bot.webAPI else {
-            print("Initialization error")
-            return
-        }
-        
+    public func authenticationTest(completion: @escaping CompletionHandler) {
         webAPI.authenticationTest(success: { user, team in
             guard let user = user, let team = team else {
                 print("User and/or team does not exist")
-                return
+                completion(); return
             }
             
             print("Logged in as \(user) for \(team)")
+            completion()
             
-        }, failure: ErrorHandler)
+        }, failure: { error in
+            print("Error: \(error)")
+            completion()
+        })
     }
 }

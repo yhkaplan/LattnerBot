@@ -33,10 +33,7 @@ public class Bot {
             print("Posted in \(channel) at \(formattedTimestamp)")
             completion()
             
-            }, failure: { error in
-                print("Error: \(error)")
-                completion()
-            })
+            }, failure: { $0.printError(activity: "posting message"); completion() })
     }
     
     // For debugging purposes: to get group IDs
@@ -51,10 +48,7 @@ public class Bot {
             response.forEach { print($0.description) }
             completion()
             
-        }, failure: { error in
-            print("Error posting \(error)")
-            completion()
-        })
+        }, failure: { $0.printError(activity: "getting groups"); completion() })
     }
 
     // For debugging purposes
@@ -68,9 +62,13 @@ public class Bot {
             print("Logged in as \(user) for \(team)")
             completion()
             
-        }, failure: { error in
-            print("Error: \(error)")
-            completion()
-        })
+        }, failure: { $0.printError(activity: "authenticating"); completion() })
     }
 }
+
+public extension SlackError {
+    public func printError(activity: String)  {
+        print("Error \(activity): \(self.localizedDescription)")
+    }
+}
+

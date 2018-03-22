@@ -23,7 +23,7 @@ public class Bot {
     
     public func post(message: String, to channel: String, with mentionID: String, completion: @escaping CompletionHandler) {
         
-        let text = (mentionID.isEmpty ? "" : "<@\(mentionID)>\n") + message
+        let text = (mentionID.isEmpty ? "" : "<@\(mentionID)> \n") + message
         
         // The reason for going with unowned here is that I would prefer the app to crash immediately
         // than hang on and on in the case that self is nil

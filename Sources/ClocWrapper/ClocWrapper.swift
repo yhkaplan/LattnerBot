@@ -24,9 +24,10 @@ public func getResults(for data: Data) throws -> String {
     guard let clocResult = try? JSONDecoder().decode(ClocResult.self, from: data) else {
         throw ClocError.couldNotConvertJSONToObject
     }
-    //TODO: make Swift orange
+
     return """
-    Percentage of Swift: \(clocResult.percentage(of: clocResult.linesOfSwift))%
-    Percentage of Obj-C: \(clocResult.percentage(of: clocResult.linesOfObjC))%
+    \(clocResult.emojiGraph)
+    Swift: \(clocResult.swiftPercentage)%
+    Obj-C: \(clocResult.objcPercentage)%
     """
 }

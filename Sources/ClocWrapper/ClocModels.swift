@@ -36,7 +36,33 @@ extension ClocResult {
         return linesOfObjC + linesOfSwift
     }
     
-    public func percentage(of linesOfCode: Int) -> Double {
+    //TODO: refactor in functional way! change emoji
+    public var emojiGraph: String {
+        
+        let emojiTotal = 20.0
+        let swiftNum = Int(round((swiftPercentage / 100) * emojiTotal))
+        let objcNum = Int(round((objcPercentage / 100) * emojiTotal))
+        
+        var graph = ""
+        for _ in 0 ..< swiftNum {
+            graph += "🔶"
+        }
+        for _ in 0 ..< objcNum {
+            graph += "🔷"
+        }
+        
+        return graph
+    }
+    
+    public var swiftPercentage: Double {
+        return self.percentage(from: self.linesOfSwift)
+    }
+    
+    public var objcPercentage: Double {
+        return self.percentage(from: self.linesOfObjC)
+    }
+    
+    public func percentage(from linesOfCode: Int) -> Double {
         return (Double(linesOfCode) / Double(sumTotal) * 100.00).roundedToTwoPlaces
     }
 }

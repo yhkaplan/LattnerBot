@@ -24,13 +24,12 @@ the master of command-line Swift: https://www.swiftbysundell.com/posts/building-
 Tested on macOS High Sierra only, not Linux.
 
 ## Todos
-* Test out groups mentions w/ this syntax: ``<!subteam^取得したID|グループ名>``
+* Once SlackKit is updated, test out group, user, and channel mentions (group: ``<!subteam^取得したID|グループ名>``)
 * Finish README
 * Add 3 tests to ClockWrapper: 1 for when no objc, 1 for when no objc header, and one for when no swift
 * Add proper release tag
 * Implement test for Slack part
 * Release binary on Homebrew (after removing APIKey)
-* Add lots of func emoji and colors and some kind of visualization
 * Make expressive README
 * Try out, improve areas lacking
 * Promote this

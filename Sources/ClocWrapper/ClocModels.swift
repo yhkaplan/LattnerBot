@@ -36,22 +36,8 @@ extension ClocResult {
         return linesOfObjC + linesOfSwift
     }
     
-    //TODO: refactor in functional way! change emoji
     public var emojiGraph: String {
-        
-        let emojiTotal = 20.0
-        let swiftNum = Int(round((swiftPercentage / 100) * emojiTotal))
-        let objcNum = Int(round((objcPercentage / 100) * emojiTotal))
-        
-        var graph = ""
-        for _ in 0 ..< swiftNum {
-            graph += "🔶"
-        }
-        for _ in 0 ..< objcNum {
-            graph += "🔷"
-        }
-        
-        return graph
+        return "".emojiLine("🔶", for: swiftPercentage).emojiLine("🔷", for: objcPercentage)
     }
     
     public var swiftPercentage: Double {
@@ -64,5 +50,18 @@ extension ClocResult {
     
     public func percentage(from linesOfCode: Int) -> Double {
         return (Double(linesOfCode) / Double(sumTotal) * 100.00).roundedToTwoPlaces
+    }
+}
+
+extension String {
+    public func emojiLine(_ emoji: String, for percentage: Double) -> String {
+        let outputLength = 20.0
+        let count = Int(round((percentage / 100) * outputLength))
+        
+        var output = self
+        for _ in 0 ..< count {
+            output += emoji
+        }
+        return output
     }
 }

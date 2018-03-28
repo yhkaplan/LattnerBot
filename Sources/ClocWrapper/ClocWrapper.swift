@@ -27,7 +27,6 @@ public func getResults(for data: Data) throws -> String {
 
     return """
     \(clocResult.emojiGraph)
-    Swift: \(clocResult.swiftPercentage)%
-    Obj-C: \(clocResult.objcPercentage)%
+    Swift: \(clocResult.swiftPercentage)%, Obj-C: \(clocResult.objcPercentage)%
     """
 }

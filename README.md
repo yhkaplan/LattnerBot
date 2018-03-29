@@ -24,15 +24,18 @@ the master of command-line Swift: https://www.swiftbysundell.com/posts/building-
 Tested on macOS High Sierra only, not Linux.
 
 ## Todos
-* Once SlackKit is updated, test out group, user, and channel mentions (group: ``<!subteam^取得したID|グループ名>``)
 * Finish README
 * Add more tests to ClockWrapper: 1 for when no objc, 1 for when no objc header, and one for when no swift
 * Add proper release tag
 * Implement test for Slack part
-* Release binary on Homebrew (after removing APIKey)
+* Release binary on Homebrew
 * Make expressive README
 * Try out, improve areas lacking
 * Promote this
 * Replace cloc with github API so bot doesn't need to be on local machine
    * Maybe asking about the the Swift 4.0 branch: https://github.com/nerdishbynature/octokit.swift
    * Then using this API: https://developer.github.com/v3/repos/#list-languages
+* OR: use light persistance framework thats SPM compatible:
+   * https://github.com/saoudrizwan/Disk
+   * https://github.com/PerfectlySoft/Perfect-SQLite
+   * https://github.com/dreymonde/Shallows

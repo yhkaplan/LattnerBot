@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/SlackKit/SKCore",
         "state": {
           "branch": null,
-          "revision": "cb313cdebacf9c882460b3b25349f9bc55015c8c",
-          "version": "4.1.0"
+          "revision": "1ac0e21612d4390206adeb57eb5f8fcae66c0811",
+          "version": "4.1.1"
         }
       },
       {
@@ -33,8 +33,8 @@
         "repositoryURL": "https://github.com/SlackKit/SKRTMAPI",
         "state": {
           "branch": null,
-          "revision": "aaa6d9146aa090215f6e05964bf1d5b3e1d73d90",
-          "version": "4.1.1"
+          "revision": "c46f78c588e619c0d547ecae264d77dfaff5c0f0",
+          "version": "4.1.2"
         }
       },
       {
@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/SlackKit/SKWebAPI",
         "state": {
           "branch": null,
-          "revision": "6344d399d7cfcd1051e2ad29fb6c7262499d8366",
-          "version": "4.1.1"
+          "revision": "b5b303c7e5cdecd587499061a81128ef4d7ed3f1",
+          "version": "4.1.3"
         }
       },
       {

@@ -8,7 +8,8 @@ This is a SlackBot made in Swift to announce what percentage of your codebase is
 You will need your own API key. Also, you will need to specify your preferred timezone.
 
 1. This project depends on cloc being installed: ``$ brew install cloc``
-2. Run ``$ swift build`` for test builds, then run ``$ .build/debug/LattnerBot <relative path to source directory>``
+1. Set an environment variable with your Slack key like SLACK_KEY
+1. Run ``$ swift build`` for test builds, then run ``$ .build/debug/LattnerBot SLACK_KEY --path <relative path to source directory>``
 
 For the release builds, run the commands below:
 ```bash
@@ -35,7 +36,8 @@ Tested on macOS High Sierra only, not Linux.
 * Replace cloc with github API so bot doesn't need to be on local machine
    * Maybe asking about the the Swift 4.0 branch: https://github.com/nerdishbynature/octokit.swift
    * Then using this API: https://developer.github.com/v3/repos/#list-languages
-* OR: use light persistance framework thats SPM compatible:
+* OR: use light persistance framework thats SPM compatible or plain old JSON
    * https://github.com/saoudrizwan/Disk
    * https://github.com/PerfectlySoft/Perfect-SQLite
    * https://github.com/dreymonde/Shallows
+* Or add coverage reports

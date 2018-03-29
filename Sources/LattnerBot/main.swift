@@ -4,15 +4,21 @@ import Commander
 import Foundation
 
 let main = command(
-    Argument<String>("apikey", description: "The API key for your Slack account"),
+    Argument<String>("environmentalVar", description: "The name of the environmental variable containing your Slack API key"),
     Option("path", default: "", description: "The path to the files you want to scan"),
     Option("channel", default: "#general", description: "The channel you want to post to"),
     Option("mentionID", default: "", description: "Which @mentions you want to prepend"), //TODO: not working as pure string, may need to add feature to SlackKit
     Option("timezone", default: "GMT", description: "The timezone you wish error/success status to be displayed in"),
     Flag("debug-output", default: false, description: "Whether or not to show debug output from cloc")
 
-) { apikey, path, channel, mentionID, timezone, debug in
+) { environmentalVar, path, channel, mentionID, timezone, debug in
 
+    
+    guard let apikey = environmentVarValue(for: environmentalVar) else {
+        print("No valid API key found for environmental variable: \(environmentalVar)")
+        return
+    }
+    
     // Get data
     print("Analyzing code, please wait...")
     var message = ""

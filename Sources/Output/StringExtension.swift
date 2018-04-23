@@ -7,8 +7,8 @@
 
 import Foundation
 
-public extension String {
-    public func formattedTimestamp(withTimezone timezone: String) -> String? {
+extension String {
+    func formattedTimestamp(withTimezone timezone: String) -> String? {
         guard let ts = Double(self) else { return nil }
         
         let date = Date(timeIntervalSince1970: ts)

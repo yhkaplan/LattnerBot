@@ -9,6 +9,7 @@ You will need your own API key. Also, you will need to specify your preferred ti
 
 1. This project depends on cloc being installed: ``$ brew install cloc``
 1. Set an environment variable with your Slack key like SLACK_KEY
+1. Get pinned versions of dependencies with: ``$ swift package fetch``
 1. Run ``$ swift build`` for test builds, then run ``$ .build/debug/LattnerBot SLACK_KEY --path <relative path to source directory>``
 
 For the release builds, run the commands below:

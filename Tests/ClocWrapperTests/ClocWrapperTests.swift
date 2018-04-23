@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import ClocWrapper
+@testable import ClocWrapper
 
 class ClocWrapperTests: XCTestCase {
     
@@ -43,7 +43,6 @@ class ClocWrapperTests: XCTestCase {
         XCTAssertEqual(sumTotal, result.sumTotal)
         XCTAssertEqual(linesOfSwift, result.linesOfSwift)
         XCTAssertEqual(linesOfObjc, result.linesOfObjC)
-            
     }
     
     func test_roundedToTwoPlaces_returnsCorrectFigure() {
@@ -57,8 +56,8 @@ class ClocWrapperTests: XCTestCase {
             XCTFail("Deserialization failure"); return
         }
         
-        XCTAssertEqual(result.percentage(of: result.linesOfObjC), 2.06)
-        XCTAssertEqual(result.percentage(of: result.linesOfSwift), 97.94)
-        XCTAssertEqual(result.percentage(of: result.sumTotal), 100.00)
+        XCTAssertEqual(result.percentage(from: result.linesOfObjC), 2.06)
+        XCTAssertEqual(result.percentage(from: result.linesOfSwift), 97.94)
+        XCTAssertEqual(result.percentage(from: result.sumTotal), 100.00)
     }
 }

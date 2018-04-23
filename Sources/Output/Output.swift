@@ -66,8 +66,8 @@ public class Bot {
     }
 }
 
-public extension SlackError {
-    public func printError(activity: String)  {
+extension SlackError {
+    func printError(activity: String)  {
         print("Error \(activity): \(self.localizedDescription)")
     }
 }

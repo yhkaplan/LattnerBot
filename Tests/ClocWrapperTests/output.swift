@@ -1,4 +1,4 @@
-public let clocJSON = """
+let clocJSON = """
     {"header" : {
       "cloc_url"           : "github.com/AlDanial/cloc",
       "cloc_version"       : "1.76",

@@ -11,11 +11,10 @@ let main = command(
     Option("timezone", default: "GMT", description: "The timezone you wish error/success status to be displayed in"),
     Flag("debug-output", default: false, description: "Whether or not to show debug output from cloc")
 
-) { environmentalVar, path, channel, mentionID, timezone, debug in
+) { envarKey, path, channel, mentionID, timezone, debug in
 
-    
-    guard let apikey = environmentVarValue(for: environmentalVar) else {
-        print("No valid API key found for environmental variable: \(environmentalVar)")
+    guard let apikey = envarValue(for: envarKey) else {
+        print("No valid API key found for environmental variable: \(envarKey)")
         return
     }
     

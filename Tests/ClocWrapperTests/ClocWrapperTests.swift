@@ -6,6 +6,8 @@
 //
 
 import XCTest
+// Using @testable allows you to access `internal` level funcs/vars
+// rather than just public ones like the regular import does
 @testable import ClocWrapper
 
 class ClocWrapperTests: XCTestCase {

@@ -26,6 +26,7 @@ the master of command-line Swift: https://www.swiftbysundell.com/posts/building-
 Tested on macOS High Sierra only, not Linux.
 
 ## Todos
+* Make LattnerBot say the change in number of lines of code
 * Finish README
 * Add more tests to ClockWrapper: 1 for when no objc, 1 for when no objc header, and one for when no swift
 * Add proper release tag

@@ -26,12 +26,14 @@ the master of command-line Swift: https://www.swiftbysundell.com/posts/building-
 Tested on macOS High Sierra only, not Linux.
 
 ## Todos
+* Make a Brew tap: https://docs.brew.sh/How-to-Create-and-Maintain-a-Tap
+* Release binary on Homebrew
+
 * Make LattnerBot say the change in number of lines of code
 * Finish README
 * Add more tests to ClockWrapper: 1 for when no objc, 1 for when no objc header, and one for when no swift
 * Add proper release tag
 * Implement test for Slack part
-* Release binary on Homebrew
 * Make expressive README
 * Try out, improve areas lacking
 * Promote this

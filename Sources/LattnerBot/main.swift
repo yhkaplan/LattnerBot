@@ -7,7 +7,7 @@ let main = command(
     Argument<String>("environmentalVar", description: "The name of the environmental variable containing your Slack API key"),
     Option("path", default: "", description: "The path to the files you want to scan"),
     Option("channel", default: "#general", description: "The channel you want to post to"),
-    Option("mentionID", default: "", description: "Which @mentions you want to prepend"), //TODO: not working as pure string, may need to add feature to SlackKit
+    Option("mentionID", default: "", description: "Which @mentions you want to prepend"), 
     Option("timezone", default: "GMT", description: "The timezone you wish error/success status to be displayed in"),
     Flag("debug-output", default: false, description: "Whether or not to show debug output from cloc")
 

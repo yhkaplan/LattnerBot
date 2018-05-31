@@ -7,16 +7,10 @@ This is a SlackBot made in Swift to announce what percentage of your codebase is
 ## Usage
 You will need your own API key. Also, you will need to specify your preferred timezone.
 
-1. This project depends on cloc being installed: ``$ brew install cloc``
 1. Set an environment variable with your Slack key like SLACK_KEY
-1. Get pinned versions of dependencies with: ``$ swift package fetch``
-1. Run ``$ swift build`` for test builds, then run ``$ .build/debug/LattnerBot SLACK_KEY --path <relative path to source directory>``
-
-For the release builds, run the commands below:
+1. Run the command below:
 ```bash
-$ swift build -c release -Xswiftc -static-stdlib
-$ cd .build/release
-$ cp -f LattnerBot /usr/local/bin/lattnerbot
+$ ./bin/install.sh
 ```
 For more information about building and releasing, please refer to this post from John Sundell, 
 the master of command-line Swift: https://www.swiftbysundell.com/posts/building-a-command-line-tool-using-the-swift-package-manager
